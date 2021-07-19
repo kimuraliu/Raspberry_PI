@@ -1,1 +1,19 @@
-123
+官網
+https://www.raspberrypi.org/software/
+https://www.raspberrypi.org/downloads/
+
+IT HELP樹莓派實驗室
+https://ithelp.ithome.com.tw/articles/10234848
+
+作業系統安裝檔下載
+Raspberry Pi OS with desktop and recommended software
+
+Raspberry Pi 筆記(67)：樹莓派官方SD卡燒錄程式Imager及格式化軟體SDFormatter
+https://atceiling.blogspot.com/2020/03/raspberry-pi-67-sdimagersdformatter.html
+SDFormatter格式化軟體
+https://www.azofreeware.com/2013/12/sd-formatter-40-sd.html
+
+
+影像檔安裝軟體下載
+balenaEtcher
+https://www.balena.io/etcher/
