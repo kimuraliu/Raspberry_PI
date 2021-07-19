@@ -13,15 +13,21 @@ https://atceiling.blogspot.com/2020/03/raspberry-pi-67-sdimagersdformatter.html
 SDFormatter格式化軟體
 https://www.azofreeware.com/2013/12/sd-formatter-40-sd.html
 
-
 影像檔安裝軟體下載
 balenaEtcher
 https://www.balena.io/etcher/
+
+修改root密碼
+pi@raspberrypi:~$ sudo passwd root
+Enter new UNIX password:   #輸入第一遍密碼
+Retype new UNIX password:  #輸入第二遍密碼
 
 開關機
 sudo reboot #重開機
 sudo halt   #關機(比sudo poweroff安全)
 
+Raspberry Pi學習筆記（三）：指令與功能
+https://yanwei-liu.medium.com/raspberry-pi%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98-%E4%B8%89-%E6%8C%87%E4%BB%A4%E8%88%87%E5%8A%9F%E8%83%BD-b9e1a7a6a14
 套件管理
 sudo apt-get update             #更新軟體列表
 sudo apt-get upgrade            #更新軟體包
@@ -33,4 +39,11 @@ sudo apt-get install vim
 
 查看SD卡空間狀況
 df -h
+
+調整VNC大小
+1.先裝VIM
+sudo apt-get install vim
+2.修改config檔中的，編輯 config.txt 設定檔，將 framebuffer_width=1280 及 framebuffer_height=720 前方 # 註解刪除，解析度的值可視需求維持 1280*720 或修改為 1920*1080。
+sudo vim /boot/config.txt
+
 
