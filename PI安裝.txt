@@ -46,4 +46,6 @@ sudo apt-get install vim
 2.修改config檔中的，編輯 config.txt 設定檔，將 framebuffer_width=1280 及 framebuffer_height=720 前方 # 註解刪除，解析度的值可視需求維持 1280*720 或修改為 1920*1080。
 sudo vim /boot/config.txt
 
+安裝spyder 
+sudo apt-get install spyder3
 
