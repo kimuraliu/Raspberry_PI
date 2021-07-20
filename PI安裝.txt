@@ -37,6 +37,13 @@ sudo apt-get remove <軟體名稱>   #移除套件
 安裝Vim編輯器
 sudo apt-get install vim
 
+安裝中文輸入 https://books.bod.idv.tw/2019/07/raspberry-pi.html
+安裝新酷音輸入法(scim-chewing)
+sudo apt-get install scim-chewing
+查看SCIM輸入法的切換查看及設定
+(泛用智慧型輸入法平台：圖形介面設定工具)
+樹莓派LOGO→偏好設定→SCIM輸入法框架
+
 查看SD卡空間狀況
 df -h
 
