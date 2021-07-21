@@ -64,6 +64,10 @@ MariaDB [example]> GRANT ALL PRIVILEGES ON wordpress.* TO 'ceiling'@'localhost';
 ● 更新權限表，可以讓剛剛更改的權限立刻生效
 FLUSH PRIVILEGES;
 --------------------------------------------------------------------------------------------------------------
+[安裝PHP MySQL連接器]
+如果系統要從 PHP 連接 MySQL 資料庫，需要確認一下是否已安裝 php-mysql 套件。安裝的指令如下：
+$ sudo apt-get install php-mysql
+
 [安裝MySQL管理工具Adminer]
 說起使用網頁管理MySQL/MariaDB資料庫，常會用到 phpMyAdmin，不過有些安全上的問題，
 而Adminer 是一套和 phpMyAdmin 類似，可以用來管理 MySQL 的 PHP 程式，而且整個程式只需要一個檔案。
