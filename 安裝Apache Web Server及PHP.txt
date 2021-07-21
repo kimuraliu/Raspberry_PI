@@ -1,0 +1,53 @@
+Raspberry Pi 筆記(60)：安裝Apache Web Server及PHP
+https://atceiling.blogspot.com/2020/03/raspberry-pi-60apache-web-serverphp.html
+
+[安裝Apache Web]
+Apache HTTP Server（簡稱Apache）是Apache軟體基金會的一個開放原始碼的網頁伺服器軟體，
+可以在大多數電腦作業系統中運行。由於其跨平台和安全性，被廣泛使用，是最流行的Web伺服器軟體之一。
+它快速、可靠並且可通過簡單的API擴充，將Perl／Python等直譯器編譯到伺服器中。[維基百科]
+Apache網頁服務器，根據 w3techs 的統計，全球有 40%的網站是使用 Apache來架設，
+也是Raspberry Pi上最受歡迎的Web服務器之一。
+Apache 本身可以使用 HTTP 和 HTTPS Web 協議提供 HTML文件給前端的瀏覽器。以下要實做如何在樹莓派上安裝 Apache。
+在將 Apache 安裝在 Raspberry Pi 之前，需使用以下兩個指令來確保系統更新到最新。
+
+1.更新系統
+$ sudo apt-get update && sudo apt-get upgrade
+
+2.安裝 Apache2，請在終端機輸入以下指令
+$ sudo apt-get install apache2 -y
+
+要檢查 Apache 是否已啟動並正在運行，可以在Web 瀏覽器中輸入Raspberry Pi 的 IP 地址，
+如果服務正常，會回應一個帶有簡單文字的網頁
+
+如果您不知道 IP，可以在終端中輸入以下命令看到本機的 IP 是什麼？
+$ hostname -I
+
+如果不是用網頁確認服務狀況，也可以使用以下指令確認一下 Apache 服務是否正常執行：
+$ sudo systemctl status apache2
+
+看到綠色的字：active (running) 表示服務正常。
+Apache 的網頁檔案放置的路徑，預設在 /var/www /html，要修改或新增網頁，可以放在這個目錄內。可以使用 nano 文字編輯器撰寫網頁，範例如下：
+$ nano /var/www/html/index.html
+
+[安裝PHP]
+PHP（全稱：PHP：Hypertext Preprocessor，即「PHP：超文字預處理器」）是一種開源的通用電腦手稿語言，
+尤其適用於網路開發並可嵌入HTML中使用。PHP的語法借鑑吸收C語言、Java和Perl等流行電腦語言的特點，
+易於一般程式設計師學習。PHP的主要目標是允許網路開發人員快速編寫動態頁面，但PHP也被用於其他很多領域。
+PHP最初是由勒多夫在1995年開始開發的；現在PHP的標準由the PHP Group維護。PHP以PHP License 作為許可協定，
+不過因為這個協定限制了PHP名稱的使用，所以和開放原始碼許可協定 GPL不相容。[維基百科]
+PHP是一種網頁程式語言，當網頁服務器收到 Web 瀏覽器的網頁請求時，它會運行程式，
+計算出需要在頁面上顯示的內容，然後將該頁面送給 Web 瀏覽器。與靜態 HTML 不同，
+PHP在不同情況下可以顯示不同的內容。
+PHP 是網路上一種非常流行的語言：Facebook 和 Wikipedia等大型網站都是用 PHP 編寫的。
+
+至 2020 年 3 月可以安裝在樹莓派的版本是 php 7.3，Raspbian 的儲庫中提供了PHP 7.3可供簡單安裝，
+以下指令是將 php7.3和其他幾個套件包安裝到的 Raspberry Pi 中。包括php主程式等相關套件。
+$ sudo apt-get install php
+
+現在PHP已安裝到Raspberry Pi後，要寫一段 PHP 程式進行測試，以確保其正常工作。
+可以在 Apache 放置網頁的目錄 /var/www/html/ 增加一個 PHP的程式，測試命名為 testphp.php，可以使用文字編輯器進行編輯，指令如下：
+$ sudo nano /var/www/html/testphp.php
+
+檔案內容如下：
+<?php
+echo "Today's date is ".date('Y-m-d H:i:s');
