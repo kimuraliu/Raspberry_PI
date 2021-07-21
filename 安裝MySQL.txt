@@ -1,0 +1,83 @@
+Raspberry Pi 筆記(61)：安裝MySQL(MariaDB)資料庫及管理工具Adminer
+https://atceiling.blogspot.com/2020/03/raspberry-pi-61mysqlmariadb.html
+
+[安裝MariaDB]
+安裝 MySQL前，還是要確認一下系統是否更新的最新的版本，執行以下指令：
+$ sudo apt update && sudo apt upgrade
+
+下一步是將 MySQL資料庫系統軟體安裝到 Raspberry Pi。安裝很簡單，直接使用以下指令就可以安裝完成：
+$ sudo apt-get install mariadb-server
+
+[設定資料庫安全性]
+在預設的情況下，MySQL安裝時未設置任何密碼，這表示無需任何身份驗證即可進入MySQL資料庫系統。可以執行以下指令來加強 MySQL的安全性。
+$ sudo mysql_secure_installation
+
+執行過程中會有些提示，只需按照提示設置並確保MySQL安裝的安全即可。
+  -依照提示輸入 root的密碼 Change the root password? [Y/n] 
+  -移除匿名使用者  Remove anonymous users? [Y/n]
+  -不允許 root遠端登入 Disallow root login remotely? [Y/n] 
+  -移除 test 資料庫及存取權 Remove test database and access to it? [Y/n]
+  -重新載入權限的資料表  Reload privilege tables now? [Y/n] 
+  -建議的選項都是輸入Y，如果要開始使用MySQL資料庫系統，可以輸入以下指令進行登入。
+  $ sudo mysql -u root -p
+系統將提示輸入密碼，輸入上述設定的 root 用戶密碼。登入後，就可以輸入MySQL命令來建立、更改和刪除資料庫。
+透過此界面，可以管理用戶帳號及權限。如要離開 MySQL 資料庫系統，有兩種方法，
+第一種是在 MySQL 系統的提示字元輸入 quit 或 exit 結束系統。第二種方法是直接按 Ctrl ＋  D 離開MySQL。
+--------------------------------------------------------------------------------------------------------------
+[MySQL資料庫系統指令]
+● 顯示目前登入使用者
+MariaDB [example]> SELECT USER();
+
+● 顯示資料庫版本
+MariaDB [example]> SELECT VERSION();
+
+● 顯示已經建立的 database
+MariaDB [(none)]> SHOW databases;
+
+● 建立 example 資料庫：
+MariaDB [(none)]>CREATE DATABASE example;
+
+● 選擇資料庫
+MariaDB [zsystem]> USE example;
+
+● 刪除資料庫
+MariaDB [(none)]> DROP DATABASE example;
+
+● 建立資料表
+MariaDB [example]> create table customer(name varchar(10), join_date date) DEFAULT CHARSET=utf8;
+
+● 查看資料表
+MariaDB [example]> DESC customer;
+
+● 刪除資料表
+MariaDB [example]> DROP table customer;
+
+● 清空資料表內資料
+MariaDB [example]> DELETE FROM customer;
+
+● 建立 ceiling 使用者，密碼為 your_password
+MariaDB [example]> CREATE USER 'ceiling'@'localhost' IDENTIFIED by 'your_password';
+
+● 設定資料庫權限，ALL PRIVILEGES 可以換成 SELECT, INSERT, DELETE等指令。
+MariaDB [example]> GRANT ALL PRIVILEGES ON wordpress.* TO 'ceiling'@'localhost';
+
+● 更新權限表，可以讓剛剛更改的權限立刻生效
+FLUSH PRIVILEGES;
+--------------------------------------------------------------------------------------------------------------
+[安裝MySQL管理工具Adminer]
+說起使用網頁管理MySQL/MariaDB資料庫，常會用到 phpMyAdmin，不過有些安全上的問題，
+而Adminer 是一套和 phpMyAdmin 類似，可以用來管理 MySQL 的 PHP 程式，而且整個程式只需要一個檔案。
+
+先到官網 adminer.org 下載 Adminer 程式。
+在上圖下載檔案連結的紅框處按滑鼠右鍵，複製下載連結網址。
+*.Adminer 4.7.6 for MYSQL
+開啟記事本或其他文字工具，貼上上述複製的連結，可以看到下載的網址，因版本可能不同，請下載最新版本：
+https://github.com/vrana/adminer/releases/download/v4.7.6/adminer-4.7.6-mysql.php
+
+開啟 Raspberry Pi 終端機視窗，更換到Apache網頁伺服器存放的網頁位置，下載後，將檔案更換成 adminer.php。
+$ cd /var/www/html
+$ sudo wget https://github.com/vrana/adminer/releases/download/v4.7.6/adminer-4.7.6-mysql.php
+$ sudo mv adminer-4.7.6-mysql.php adminer.php
+
+使用瀏覽器開啟 Raspberry Pi 的 adminer.php 程式，可以看到登入的畫面：
+http://192.168.1.149/adminer.php
