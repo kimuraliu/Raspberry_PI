@@ -68,3 +68,41 @@ $ sudo pip3 install jupyter
 
 開啟Jupyter Notebook
 $ jupyter notebook
+
+
+安裝jupyter notebook 於Raspberry Pi
+http://blog.ittraining.com.tw/2018/10/jupyter-notebook-raspberry-pi-3.html
+讓 jupyter-notebook Server 可從windows連入
+$ jupyter notebook --generate-config
+$ 修改 ~/.jupyter/jupyter_notebook_config.py 找到
+$ c.NotebookApp.ip = ‘localhost'
+改成
+$ c.NotebookApp.ip = '0.0.0.0’ 
+
+啓動jupyter-notebook
+$ sudo jupyter-notebook
+如果是root ,則要多加 --allow-root 才能啓動    
+$ sudo jupyter-notebook --allow-root
+
+設定遠端連線
+https://www.gushiciku.cn/pl/gVga/zh-tw
+1. 生成一個 notebook 配置檔案
+$ jupyter notebook --generate-config
+or
+$ jupyter notebook --generate-config --allow-config
+
+2.生成密碼
+
+3. 修改配置檔案
+在 jupyter_notebook_config.py 中找到下面的行，取消註釋並修改。
+
+c.NotebookApp.ip='*'
+c.NotebookApp.password = u'sha:ce...剛才複製的那個密文'
+c.NotebookApp.open_browser = False
+c.NotebookApp.port =8888 #可自行指定一個埠, 訪問時使用該埠
+以上設定完以後就可以在伺服器上啟動 jupyter notebook，jupyter notebook, root 使用者使用 jupyter notebook --allow-root。開啟 IP:指定的埠, 輸入密碼就可以訪問了。
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+jupyter notebook 500 : Internal Server Error解決方法
+
+更新
+$ pip3 install --upgrade --user nbconvert
