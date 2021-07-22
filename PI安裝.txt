@@ -84,6 +84,10 @@ $ sudo jupyter-notebook
 如果是root ,則要多加 --allow-root 才能啓動    
 $ sudo jupyter-notebook --allow-root
 
+--------------------------------------------------------------------------------------
+手把手帶你在 Ubuntu 主機安裝 Jupyter Notebook 並用瀏覽器遠端連線進入｜抬升 Raise
+https://tsraise.com/?p=401
+
 設定遠端連線
 https://www.gushiciku.cn/pl/gVga/zh-tw
 1. 生成一個 notebook 配置檔案
