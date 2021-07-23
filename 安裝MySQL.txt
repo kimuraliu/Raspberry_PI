@@ -23,6 +23,33 @@ $ sudo mysql_secure_installation
 系統將提示輸入密碼，輸入上述設定的 root 用戶密碼。登入後，就可以輸入MySQL命令來建立、更改和刪除資料庫。
 透過此界面，可以管理用戶帳號及權限。如要離開 MySQL 資料庫系統，有兩種方法，
 第一種是在 MySQL 系統的提示字元輸入 quit 或 exit 結束系統。第二種方法是直接按 Ctrl ＋  D 離開MySQL。
+
+如何在 Raspberry Pi 上打開 MySQL 以進行外部/遠程連接？
+https://stackoverflow.com/questions/18733802/how-do-i-open-up-my-mysql-on-my-raspberry-pi-for-outside-remote-connections
+https://chenuin.blogspot.com/2019/08/mysqlmariadb.html
+
+[查詢使用者權限]
+SELECT User,Host FROM mysql.user;
+
+1.新增指定IP的連線用戶(指定IP)
+CREATE USER 'username'@'ip_address' IDENTIFIED BY 'mypassword';
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'ip_address';
+
+2.新增任意IP的連線用戶，如果是%就是不指定IP
+CREATE USER 'username'@'%' IDENTIFIED BY 'mypassword';
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'%';
+
+3.新增完成之後請執行：
+FLUSH PRIVILEGES;
+
+4.可以確認一下使用者有沒有新增成功，也可以查詢使用者權限：
+SHOW GRANTS FOR username@ip_address;
+
+// 查詢現在使用者的權限
+SHOW GRANTS;
+SHOW GRANTS FOR CURRENT_USER;
+SHOW GRANTS FOR CURRENT_USER();
+
 --------------------------------------------------------------------------------------------------------------
 [MySQL資料庫系統指令]
 ● 顯示目前登入使用者
