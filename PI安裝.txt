@@ -110,3 +110,41 @@ jupyter notebook 500 : Internal Server Error解決方法
 
 更新
 $ pip3 install --upgrade --user nbconvert
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+初探樹莓派內建的 Thonny Python IDE
+https://dsalearning.github.io/aiot/raspberry-thonny-python-ide/
+快捷鍵與快速設定(Alt +3、Alt +4)
+https://www.jianshu.com/p/8d20137027ee
+
+1.更新pip3
+$ pip3 install --upgrade pip
+
+2.確認virtualenv 程式
+$ pip3 list
+若無
+$ pip3 install virtualenv
+或
+$ sudo pip3 install virtualenv
+
+3.建立virtualenv
+$ sudo virtualenv dsalearning
+
+[進入虛擬環境]
+1.切換到 dsalearning 目錄
+$ cd dsalearning
+
+2.進入 dsalearning 環境
+$ source bin/activate
+
+3.檢查虛擬環境安裝的程式
+1.檢查已安裝的程式$ pip3 list
+
+[離開虛擬環境]
+$ deactivate
+
+[刪除虛擬環境]
+$ sudo rm -r dsalearning/
+
+[終端機執行]
+cd目錄 python程式
+
