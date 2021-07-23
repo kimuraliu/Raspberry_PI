@@ -90,8 +90,13 @@ http://192.168.1.149/adminer.php
 Python 使用 MySQL Connector 操作 MySQL/MariaDB 資料庫教學與範例
 https://officeguide.cc/python-mysql-mariadb-database-connector-tutorial-examples/
 
+mysql-connector-python、mysql-connector-python-rf 和 mysql-connector-repackaged 之間有什麼區別？
+https://stackoverflow.com/questions/34168651/what-are-the-differences-between-mysql-connector-python-mysql-connector-python
+
 1.安裝 MySQL Connector 模組
-$ pip install mysql-connector-python
+$ pip3 install mysql-connector-python
+連不到mysql時安裝
+*** sudo apt install python3-mysql.connector
 
 2.連接資料庫
 import mysql.connector
@@ -116,6 +121,14 @@ try:
         cursor.execute("SELECT DATABASE();")
         record = cursor.fetchone()
         print("目前使用的資料庫：", record)
+        
+        # 查詢資料庫
+        cursor = connection.cursor()
+        cursor.execute("SELECT name, age FROM persons;")
+
+        # 列出查詢的資料
+        for (name, age) in cursor:
+          print("Name: %s, Age: %d" % (name, age))
 
 except Error as e:
     print("資料庫連接失敗：", e)
